@@ -18,9 +18,9 @@ export async function validatePassword({
   email: string
   password: string
 }) {
-  const user = await UserModel.findOne({ email })
+  const user = await UserModel.findOne({ email: password })
 
-  if (user == null) return false
+  if (!user) return false
 
   const isValid = await user.comparePassword(password)
 
